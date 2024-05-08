@@ -17,7 +17,7 @@ export default async function client(endpoint: RequestInfo, options?: RequestIni
 
   let data;
   try {
-    const response = await window.fetch(`http://127.0.0.1:8000${endpoint}`, config);
+    const response = await window.fetch(`${endpoint}`, config);
     data = await response.json();
     if (response.ok) {
       return data;

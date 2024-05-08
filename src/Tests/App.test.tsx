@@ -23,10 +23,10 @@ const testProblemsResponse = [{
 }];
 
 const server = setupServer(
-  http.get('http://127.0.0.1:8000/api/problems/', () => {
+  http.get('/api/problems/', () => {
     return HttpResponse.json([])
   }),
-  http.post('http://127.0.0.1:8000/api/problems/', () => {
+  http.post('/api/problems/', () => {
     return HttpResponse.json([])
   }));
 
@@ -64,7 +64,7 @@ test('submit problem and show it on problems list', async () => {
   const problemDesc = 'Problem description';
   const proposedFix = 'Proposed fix';
   server.use(
-    http.post('http://127.0.0.1:8000/api/problems/', () => {
+    http.post('/api/problems/', () => {
       return HttpResponse.json([{
         longtitude,
         latitude,
@@ -118,7 +118,7 @@ test('empty list info', () => {
 
 test('list loading', async () => {
   server.use(
-    http.get('http://127.0.0.1:8000/api/problems/', async () => {
+    http.get('/api/problems/', async () => {
       await delay();
 
       return HttpResponse.json([{
@@ -135,7 +135,7 @@ test('list loading', async () => {
 
 test('list loaded', async () => {
   server.use(
-    http.get('http://127.0.0.1:8000/api/problems/', () => {
+    http.get('/api/problems/', () => {
       return HttpResponse.json([{
         testProblemsResponse
       }])
@@ -161,7 +161,7 @@ test('list show', async () => {
 
 test('list loading failed', async () => {
   server.use(
-    http.get('http://127.0.0.1:8000/api/problems/', () => {return new HttpResponse(null, {
+    http.get('/api/problems/', () => {return new HttpResponse(null, {
       status: 500,
     })}  ));
 
